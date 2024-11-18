@@ -1,4 +1,3 @@
-Here’s a basic README structure for your repository based on its contents:
 
 ---
 
