@@ -36,7 +36,8 @@ A RESTful API implementation for interacting with graph databases using Go.
 
 Run the application:
 ```bash
-go run main.go
+go build -o api ./cmd/main.go
+./api
 ```
 
 By default, the service will start on port `8080`. You can change the port via configuration.

@@ -1,27 +1,22 @@
 package main
 
 import (
+	"lab5/config"
+	"lab5/internal/rest"
+	repository "lab5/internal/storage/repo"
 	"log"
-	"net/http"
-	"project/config"
-	"project/routes"
-	"project/services"
-
-	"github.com/gorilla/mux"
 )
 
 func main() {
+	// Load configuration
 	cfg := config.LoadConfig()
 
-	neo4jService, err := services.NewNeo4jService(cfg.Neo4jURI, cfg.Neo4jUsername, cfg.Neo4jPassword)
+	// Connect to Neo4j
+	neo4jRepo, err := repository.NewNeo4jRepository(cfg.Neo4j.URI, cfg.Neo4j.Username, cfg.Neo4j.Password)
 	if err != nil {
-		log.Fatalf("Failed to connect to Neo4j: %v", err)
+		log.Fatalf("Ошибка подключения к Neo4j: %v", err)
 	}
-	defer neo4jService.Close()
+	defer neo4jRepo.Close()
 
-	router := mux.NewRouter()
-	routes.RegisterRoutes(router, neo4jService, cfg.AuthToken)
-
-	log.Println("Server is running on port 8080")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	rest.Init(cfg, neo4jRepo)
 }
