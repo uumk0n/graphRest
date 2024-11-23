@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  neo4j:
+    image: neo4j:latest
+    environment:
+      - NEO4J_AUTH=${NEO4J_USER}/${NEO4J_PASSWORD} # пароль обязательно должен быть из 8 символов минимум
+    ports:
+      - "${NEO4J_HTTP_PORT}:${NEO4J_HTTP_PORT}"  # Neo4j браузер
+      - "${NEO4J_BOLT_PORT}:${NEO4J_BOLT_PORT}"  # Протокол Bolt для драйверов Neo4j
