@@ -12,7 +12,7 @@ func main() {
 	cfg := config.LoadConfig()
 
 	// Connect to Neo4j
-	neo4jRepo, err := repository.NewNeo4jRepository(cfg.Neo4j.URI, cfg.Neo4j.Username, cfg.Neo4j.Password)
+	neo4jRepo, err := repository.NewNeo4jRepository(cfg.Neo4jURI, cfg.Neo4jUsername, cfg.Neo4jPassword)
 	if err != nil {
 		log.Fatalf("Ошибка подключения к Neo4j: %v", err)
 	}

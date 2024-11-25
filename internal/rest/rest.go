@@ -28,7 +28,7 @@ func Init(cfg config.Config, repo *repository.Neo4jRepository) {
 	router.DELETE("/node/:node_id", authMiddleware, handler.DeleteNodeAndRelationships)
 
 	// Start server
-	if err := router.Run(":" + cfg.Server.Port); err != nil {
+	if err := router.Run(":" + cfg.ServerPort); err != nil {
 		log.Fatalf("Ошибка запуска сервера: %v", err)
 	}
 }
