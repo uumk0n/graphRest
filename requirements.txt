@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+python-dotenv
+neo4j
+pydantic
+pydantic-settings
+cors
